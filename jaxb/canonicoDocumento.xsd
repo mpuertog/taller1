@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="http://www.uniandes.edu.co/canonicoDocumento/"
+	attributeFormDefault="unqualified" elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Canonico para el envio de mensajes entre entidades y
+			operadores
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="documentCanonical">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="1">
+				<xs:element type="xs:string" name="fileName" />
+				<xs:element type="xs:string" name="userID" />
+				<xs:element type="xs:string" name="fileMD5" />
+				<xs:element type="xs:string" name="originName" />
+				<xs:element type="xs:string" name="issuer" />
+				<xs:element type="xs:string" name="receiver" />
+				<xs:element type="xs:string" name="mimeType" />
+				<xs:element type="xs:string" name="category" />
+				<xs:element type="xs:date" name="createdDate" />
+				<xs:element type="xs:date" name="sendedDate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
