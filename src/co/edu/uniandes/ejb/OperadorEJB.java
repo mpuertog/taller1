@@ -8,7 +8,7 @@ import co.edu.uniandes.entities.OperadorCiudadano;
 @Local
 public interface OperadorEJB {
 
-	public void registroCiudadanoEnOperador(String idOperador, long idCiudadano);
+	public void actualizarOperadorCiudadano(String idOperador, long idCiudadano);
 
 	public Operador consultarOperador(String idOperador);
 

@@ -2,8 +2,8 @@ package co.edu.uniandes.service;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,7 +32,7 @@ public class OperadorService {
 		if (operadorCiudadano != null) {
 			jsonObject.put("idOperador", operadorCiudadano.getOperador().getId());
 			jsonObject.put("idCiudadano", operadorCiudadano.getIdCiudadano());
-			result = "@Produces(\"application/json\") IdOperador: \n\nF IdCiudadano: \n\n" + jsonObject;
+			result = jsonObject.toString();
 		} else {
 			result = "@Produces(\"application/json\") No se encuentra operador" + jsonObject;
 		}
@@ -43,14 +43,15 @@ public class OperadorService {
 	@POST
 	@Path("/actualizarOperadorCiudadano")
 	@Produces("application/json")
-	public Response actualizarOperadorCiudadano(@FormParam("idCiudadano") Long idCiudadano,
-			@FormParam("idOperador") String idOperador) {
+	public Response actualizarOperadorCiudadano(@HeaderParam("idCiudadano") Long idCiudadano,
+			@HeaderParam("idOperador") String idOperador) {
 		JSONObject jsonObject = new JSONObject();
 		String result = null;
 		if (idCiudadano != null && idOperador != null) {
+			operadorEJB.actualizarOperadorCiudadano(idOperador, idCiudadano);
 			jsonObject.put("idCiudadano", idCiudadano);
 			jsonObject.put("idOperador", idOperador);
-			result = "@Produces(\"application/json\") IdCiudadano: \n\nF IdOperador: \n\n" + jsonObject;
+			result = jsonObject.toString();
 		} else {
 			result = "@Produces(\"application/json\") No se pudo actualizar operador" + jsonObject;
 		}

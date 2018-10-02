@@ -18,7 +18,7 @@ public class OperadorEJBImpl implements OperadorEJB {
 	private OperadorCiudadanoDAO operadoresCiudadanoDAO;
 
 	@Override
-	public void registroCiudadanoEnOperador(String idOperador, long idCiudadano) {
+	public void actualizarOperadorCiudadano(String idOperador, long idCiudadano) {
 		Operador operador = consultarOperador(idOperador);
 		if (operador == null) {
 			operador = new Operador();
