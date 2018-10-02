@@ -3,7 +3,6 @@ package co.edu.uniandes.service;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -40,10 +39,10 @@ public class OperadorService {
 	}
 
 	@POST
-	@Path("/actualizarOperadorCiudadano")
+	@Path("/actualizarOperadorCiudadano/{idCiudadano}/{idOperador}")
 	@Produces("application/json")
-	public Response actualizarOperadorCiudadano(@HeaderParam("idCiudadano") Long idCiudadano,
-			@HeaderParam("idOperador") String idOperador) {
+	public Response actualizarOperadorCiudadano(@PathParam("idCiudadano") Long idCiudadano,
+			@PathParam("idOperador") String idOperador) {
 		JSONObject jsonObject = new JSONObject();
 		String result = null;
 		if (idCiudadano != null && idOperador != null) {
