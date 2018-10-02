@@ -1,0 +1,60 @@
+package co.edu.uniandes.service;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+import org.json.JSONObject;
+
+import co.edu.uniandes.ejb.OperadorEJB;
+import co.edu.uniandes.entities.OperadorCiudadano;
+
+@Stateless
+@Path("/operadorService")
+public class OperadorService {
+
+	@EJB
+	private OperadorEJB operadorEJB;
+
+	@GET
+	@Path("/consultarOperadorCiudadano/{idCiudadano}")
+	@Produces("application/json")
+	public Response consultarOperadorCiudadano(@PathParam("idCiudadano") Long idCiudadano) {
+		JSONObject jsonObject = new JSONObject();
+		String result = null;
+		OperadorCiudadano operadorCiudadano = operadorEJB.consultarOperadorCiudadano(idCiudadano);
+		if (operadorCiudadano != null) {
+			jsonObject.put("idOperador", operadorCiudadano.getOperador().getId());
+			jsonObject.put("idCiudadano", operadorCiudadano.getIdCiudadano());
+			result = "@Produces(\"application/json\") IdOperador: \n\nF IdCiudadano: \n\n" + jsonObject;
+		} else {
+			result = "@Produces(\"application/json\") No se encuentra operador" + jsonObject;
+		}
+
+		return Response.status(200).entity(result).build();
+	}
+
+	@POST
+	@Path("/actualizarOperadorCiudadano")
+	@Produces("application/json")
+	public Response actualizarOperadorCiudadano(@FormParam("idCiudadano") Long idCiudadano,
+			@FormParam("idOperador") String idOperador) {
+		JSONObject jsonObject = new JSONObject();
+		String result = null;
+		if (idCiudadano != null && idOperador != null) {
+			jsonObject.put("idCiudadano", idCiudadano);
+			jsonObject.put("idOperador", idOperador);
+			result = "@Produces(\"application/json\") IdCiudadano: \n\nF IdOperador: \n\n" + jsonObject;
+		} else {
+			result = "@Produces(\"application/json\") No se pudo actualizar operador" + jsonObject;
+		}
+		return Response.status(200).entity(result).build();
+	}
+
+}
