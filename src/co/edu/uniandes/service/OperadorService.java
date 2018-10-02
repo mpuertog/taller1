@@ -34,9 +34,8 @@ public class OperadorService {
 			jsonObject.put("idCiudadano", operadorCiudadano.getIdCiudadano());
 			result = jsonObject.toString();
 		} else {
-			result = "@Produces(\"application/json\") No se encuentra operador" + jsonObject;
+			result = jsonObject.toString();
 		}
-
 		return Response.status(200).entity(result).build();
 	}
 
@@ -53,7 +52,7 @@ public class OperadorService {
 			jsonObject.put("idOperador", idOperador);
 			result = jsonObject.toString();
 		} else {
-			result = "@Produces(\"application/json\") No se pudo actualizar operador" + jsonObject;
+			result = jsonObject.toString();
 		}
 		return Response.status(200).entity(result).build();
 	}
