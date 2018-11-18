@@ -33,6 +33,7 @@ public class OperadorService {
 			jsonObject.put("idCiudadano", operadorCiudadano.getIdCiudadano());
 			result = jsonObject.toString();
 		} else {
+			jsonObject.put("mensaje", "no encontrado");
 			result = jsonObject.toString();
 		}
 		return Response.status(200).entity(result).build();
@@ -51,6 +52,7 @@ public class OperadorService {
 			jsonObject.put("idOperador", idOperador);
 			result = jsonObject.toString();
 		} else {
+			jsonObject.put("mensaje", "no actualizado");
 			result = jsonObject.toString();
 		}
 		return Response.status(200).entity(result).build();
